@@ -1,33 +1,24 @@
-const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'), 
+    filename: 'index.js',
+    library: 'ajs', 
+    libraryTarget: 'umd', // UMD (Universal Module Definition https://github.com/umdjs/umd) - шаблон, использовать RequireJS и браузер
+    libraryExport: 'default', // экспортируется имя default
+    globalObject: 'this', // что принимать за глобальный объект
   },
   module: {
     rules: [
-        {
-            test: /\.css$/,
-            use: [
-            MiniCssExtractPlugin.loader, 'css-loader',
-            ],
-            }
-      ],
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-        template: "./src/index.html",
-        filename: "./index.html"
-    }),
-    new MiniCssExtractPlugin({
-        filename: "./style.css"
-    })
-  ],
-  devServer: {
-    watchFiles: path.join(__dirname, 'dist'),
-    port: 9000
-  }
 };

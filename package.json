@@ -1,7 +1,6 @@
 {
-  "name": "hometaskwebpack",
+  "name": "@galinanetishina/ajs",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "acorn": "^8.11.3",
@@ -127,13 +126,25 @@
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
+  }, 
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   },
   "scripts": {
-    "start": "webpack serve --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "enrty point": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalinaNetishina/ajs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GalinaNetishina/ajs/issues"
+  },
+  "homepage": "https://github.com/GalinaNetishina/ajs#readme",
+  "description": ""
 }
