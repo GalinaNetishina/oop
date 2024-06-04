@@ -1,4 +1,4 @@
-import {Character, config, types, minNameLength, maxNameLength} from "../Character";
+import {Character, types, minNameLength, maxNameLength} from "../Character";
 import {Swordsman} from "../Swordsman";
 import {Bowman} from "../Bowman";
 import {Magician} from "../Magician";
@@ -6,14 +6,14 @@ import {Undead} from "../Undead";
 import {Zombie} from "../Zombie";
 import {Daemon} from "../Daemon";
 
-const units = [
-    Swordsman, 
-    Bowman, 
-    Magician, 
-    Undead, 
-    Zombie, 
-    Daemon,
-]
+const units = {
+    "Swordsman": Swordsman, 
+    "Bowman": Bowman, 
+    "Magician": Magician, 
+    "Undead": Undead, 
+    "Zombie": Zombie, 
+    "Daemon": Daemon,
+}
 
 test('create object', ()=> {
     const testBody = new Daemon('evil');
@@ -27,12 +27,13 @@ test('create object', ()=> {
     });
 })
 
-test('baseHealth and level', () =>{
-    for (let character of units) {
-        let testBody =  new character('bob');
-        expect(testBody.health).toBe(100);
-        expect(testBody.level).toBe(1);
-    }
+test.each(
+    Object.keys(units).map((element) => [element])
+)
+('baseHealth and level for %s', (unit) => {
+    let testBody = new units[unit]('name');
+    expect(testBody.health).toBe(100);
+    expect(testBody.level).toBe(1);
 })
 
 test('uncorrect name', () => {
@@ -45,7 +46,7 @@ test('uncorrect name', () => {
 })
 
 test('uncorrect type', () => {
-    expect(() => new Character('name', 'paladin')).toThrow();
+    expect(()=> new Character('name', 'paladin')).toThrow("Unknown type");
 })
 
 test('success levelUp', () => {
@@ -73,6 +74,5 @@ test('unsuccess levelUp', () => {
 })
 
 test('configuration', () => {
-    expect(units.length).toBe(types.length);
-    units.forEach((i)=>expect(types.includes(i)).toBeTruethy);
+    Object.keys(units).forEach((i)=>expect(types.includes(i)).toBeTruethy);
 })

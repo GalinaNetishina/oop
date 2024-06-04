@@ -6,8 +6,7 @@ export const types =Object.keys(config.types);
 export const minNameLength = config.minNameLength || 2;
 export const maxNameLength = config.maxNameLength || 10;
 
-export default class Character {
-  static MIN_NAME_LENGHT = config.minNameLength || 2;
+export class Character {
   constructor(name, type){
     if (!(types.includes(type))) {
       throw new Error("Unknown type");
