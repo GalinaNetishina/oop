@@ -1,14 +1,10 @@
-const path = require('path');
+const path = require('node:path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'), 
-    filename: 'index.js',
-    library: 'ajs', 
-    libraryTarget: 'umd', // UMD (Universal Module Definition https://github.com/umdjs/umd) - шаблон, использовать RequireJS и браузер
-    libraryExport: 'default', // экспортируется имя default
-    globalObject: 'this', // что принимать за глобальный объект
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -19,6 +15,32 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: 'html-loader',
+      //     },
+      //   ],
+      // },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      }
     ],
   },
+  // plugins: [
+  //   new HtmlWebPackPlugin({
+  //     template: './src/index.html',
+  //     filename: './index.html',
+  //   })
+  // ],
 };

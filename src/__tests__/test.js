@@ -29,8 +29,7 @@ test('create object', ()=> {
 
 test.each(
     Object.keys(units).map((element) => [element])
-)
-('baseHealth and level for %s', (unit) => {
+)('baseHealth and level for %s', (unit) => {
     let testBody = new units[unit]('name');
     expect(testBody.health).toBe(100);
     expect(testBody.level).toBe(1);
