@@ -1,10 +1,8 @@
-import {readFileSync as rf}  from 'fs'
-import * as ini from 'ini'
-
-export const config = ini.parse(rf('./config.ini', 'utf-8'));
-export const types =Object.keys(config.types);
-export const minNameLength = config.minNameLength || 2;
-export const maxNameLength = config.maxNameLength || 10;
+export const types =  ['Bowman', 'Swordsman', 'Magician', 'Zombie', 'Undead', 'Daemon'];
+export const minNameLength = 2;
+export const maxNameLength = 10;
+const baseHealth = 100;
+const baseLevel = 1;
 
 export class Character {
   constructor(name, type){
@@ -16,8 +14,8 @@ export class Character {
     }
     this.name = name;
     this.type = type;
-    this.health = parseInt(config.baseHealth) || 100;
-    this.level = parseInt(config.baseLevel) || 1;
+    this.health = baseHealth;
+    this.level = baseLevel;
   }
 
   levelUp() {
@@ -27,7 +25,7 @@ export class Character {
     ++this.level;
     this.attack = Math.round(this.attack * 1.2);
     this.defence = Math.round(this.defence * 1.2);
-    this.health = parseInt(config.baseHealth) || 100;
+    this.health = baseHealth;
   }
 
   damage(points) {

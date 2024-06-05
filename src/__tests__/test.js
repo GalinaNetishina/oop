@@ -1,22 +1,16 @@
-import {Character, types, minNameLength, maxNameLength} from "../Character";
-import {Swordsman} from "../Swordsman";
-import {Bowman} from "../Bowman";
-import {Magician} from "../Magician";
-import {Undead} from "../Undead";
-import {Zombie} from "../Zombie";
-import {Daemon} from "../Daemon";
+import * as pers from "../index.js";
 
 const units = {
-    "Swordsman": Swordsman, 
-    "Bowman": Bowman, 
-    "Magician": Magician, 
-    "Undead": Undead, 
-    "Zombie": Zombie, 
-    "Daemon": Daemon,
+    "Swordsman": pers.Swordsman, 
+    "Bowman": pers.Bowman, 
+    "Magician": pers.Magician, 
+    "Undead": pers.Undead, 
+    "Zombie": pers.Zombie, 
+    "Daemon": pers.Daemon,
 }
 
 test('create object', ()=> {
-    const testBody = new Daemon('evil');
+    const testBody = new pers.Daemon('evil');
     expect(testBody).toEqual({
         name: "evil", 
         type: "Daemon", 
@@ -29,7 +23,8 @@ test('create object', ()=> {
 
 test.each(
     Object.keys(units).map((element) => [element])
-)('baseHealth and level for %s', (unit) => {
+)
+('baseHealth and level for %s', (unit) => {
     let testBody = new units[unit]('name');
     expect(testBody.health).toBe(100);
     expect(testBody.level).toBe(1);
@@ -37,19 +32,19 @@ test.each(
 
 test('uncorrect name', () => {
     const getName = function(length) {
-        new Bowman('w'.repeat(length))
+        new pers.Bowman('w'.repeat(length))
     }
-    expect(() =>getName(minNameLength-1)).toThrow("Uncorrect length of name");
-    expect(() =>getName(maxNameLength+1)).toThrow("Uncorrect length of name");
-    expect(() =>getName(maxNameLength-1)).not.toThrow("Uncorrect length of name");
+    expect(() =>getName(pers.minNameLength-1)).toThrow("Uncorrect length of name");
+    expect(() =>getName(pers.maxNameLength+1)).toThrow("Uncorrect length of name");
+    expect(() =>getName(pers.maxNameLength-1)).not.toThrow("Uncorrect length of name");
 })
 
 test('uncorrect type', () => {
-    expect(()=> new Character('name', 'paladin')).toThrow("Unknown type");
+    expect(()=> new pers.Character('name', 'paladin')).toThrow("Unknown type");
 })
 
 test('success levelUp', () => {
-    const testBody = new Swordsman('tester');
+    const testBody = new pers.Swordsman('tester');
     const attackOld = testBody.attack;
     const defenceOld = testBody.defence;
     testBody.levelUp();
@@ -59,7 +54,7 @@ test('success levelUp', () => {
 })
 
 test('damage and healing', () => {
-    const testBody = new Undead('he');
+    const testBody = new pers.Undead('he');
     testBody.damage(5);
     expect(testBody.health).toBeLessThan(100);
     testBody.levelUp();
@@ -67,11 +62,11 @@ test('damage and healing', () => {
 })
 
 test('unsuccess levelUp', () => {
-    const dyingUnit = new Zombie('bill');
+    const dyingUnit = new pers.Zombie('bill');
     dyingUnit.damage(300);
     expect(()=>dyingUnit.levelUp()).toThrow();
 })
 
 test('configuration', () => {
-    Object.keys(units).forEach((i)=>expect(types.includes(i)).toBeTruethy);
+    Object.keys(units).forEach((i)=>expect(pers.types.includes(i)).toBeTruthy);
 })

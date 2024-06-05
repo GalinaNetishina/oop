@@ -1,16 +1,6 @@
-import {Swordsman} from "./Swordsman.js"
-import {Bowman} from "./Bowman.js"
-import {Magician} from "./Magician.js"
-import {Undead} from "./Undead.js"
-import {Zombie} from "./Zombie.js"
-import {Daemon} from "./Daemon.js"
-
-exports = [Swordsman, Bowman, Magician, Undead, Zombie, Daemon]
-let bowerman = new Bowman('bo');
-// let swordsman = new Swordsman('art');
-console.log(bowerman);
-// bowerman.levelUp();
-// bowerman.damage(15)
-// swordsman.levelUp();
-// swordsman.levelUp();
-// console.log(bowerman, swordsman)
+export { Character, types, minNameLength, maxNameLength } from "./Character.js";export {Swordsman} from "./Swordsman.js"
+export { Bowman } from "./Bowman.js"
+export { Magician } from "./Magician.js"
+export { Undead } from "./Undead.js"
+export { Zombie } from "./Zombie.js"
+export { Daemon } from "./Daemon.js"
