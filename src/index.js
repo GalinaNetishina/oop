@@ -1,6 +1,3 @@
-export { Character, types, minNameLength, maxNameLength } from "./Character.js";export {Swordsman} from "./Swordsman.js"
-export { Bowman } from "./Bowman.js"
-export { Magician } from "./Magician.js"
-export { Undead } from "./Undead.js"
-export { Zombie } from "./Zombie.js"
-export { Daemon } from "./Daemon.js"
+import './orderByProps';
+
+
