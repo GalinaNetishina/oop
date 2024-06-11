@@ -1,8 +1,8 @@
 
 import Validator from "../Validator";
 
-const validNames = ['nick', 'user23here', 'any_name', 'i_am_99_Years-old'];
-const invalidNames = ['_username', 'AlmostG000D', '2account', 'user25'];
+const validNames = ['username', 'right_name', 'any-name', 'ihave100names'];
+const invalidNames = ['_username', 'AlmostG0000D', '2account', 'user25', '-username', 'username_', 'username-'];
 const validator = new Validator();
 
 test.each(

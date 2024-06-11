@@ -5,7 +5,7 @@ export default class Validator {
     }
     validateUsername(username) {
         const allowedName = /^[a-zA-Z]{1}[\da-zA-Z\-_]*[a-zA-Z]{1}$/;
-        const ban = /\d{3,}/;
+        const ban = /\d{4,}/;
         return  (allowedName.test(username) && !(ban.test(username)));        
     }
 }
