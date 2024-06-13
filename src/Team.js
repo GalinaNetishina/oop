@@ -2,7 +2,7 @@ import Er from "./ErrorRepository";
 
 export default class Team {
     constructor() {
-        this.members = new Set;
+        this.members = new Set();
     }
     add(character) {
         if (this.members.has(character)) {

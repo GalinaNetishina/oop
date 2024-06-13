@@ -1,8 +1,8 @@
 class ErrorRepository {
     constructor() {
         this.errors = new Map(Object.entries({
-            1: 'invalid username',
-            18: 'this character is already in the team',
+            1: 'Invalid username',
+            18: 'This character is already in the team',
             20: 'Uncorrect type',
             11: 'Uncorrect length of name',
             19: 'Character is dead, level up is impossible'
