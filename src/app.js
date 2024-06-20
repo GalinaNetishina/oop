@@ -1,6 +1,6 @@
 import GameSavingLoader from "./GameSavingLoader.js";
+import GameSavingLoader2 from "./AsyncGameSavingLoader.js";
 
-console.log('start')
 GameSavingLoader.load().then((saving) => {
     // saving объект класса GameSaving
     console.log(saving)
@@ -8,3 +8,8 @@ GameSavingLoader.load().then((saving) => {
     // ...
     console.log(error)
   });
+
+  (async () => {
+    const result = await GameSavingLoader2.load()
+    console.log(result)
+  })();
