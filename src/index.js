@@ -1,5 +1,6 @@
 import { Character } from "./Character.js";
 import Team from "./Team.js";
+import canIterate from "./canIterate.js";
 
 const characters = [
     new Character('bob', 'Bowman'), 
@@ -7,10 +8,11 @@ const characters = [
     new Character('Mike', 'Magician')
 ]
 const myTeam = new Team();
+
 myTeam.addAll(...characters);
 
-for (let {character, i} of myTeam) {
-    console.assert(character===characters[i]);
-}
+console.assert([...myTeam].every((item)=> {return characters.includes(item)})
+        && characters.every((item)=> {return [...myTeam].includes(item)})
+        ==true);
 
 
