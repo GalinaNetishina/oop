@@ -1,18 +1,8 @@
-import { Character } from "./Character.js";
-import Team from "./Team.js";
+
 import canIterate from "./canIterate.js";
 
-const characters = [
-    new Character('bob', 'Bowman'), 
-    new Character('Sam', "Swordsman"), 
-    new Character('Mike', 'Magician')
-]
-const myTeam = new Team();
-
-myTeam.addAll(...characters);
-
-console.assert([...myTeam].every((item)=> {return characters.includes(item)})
-        && characters.every((item)=> {return [...myTeam].includes(item)})
-        ==true);
-
-
+console.assert(canIterate(new Map())==true, 'Map is iterable'); 
+console.assert(canIterate(new Set())==true, 'Set is iterable'); 
+console.assert(canIterate(null) ==false, 'null is not iterable'); 
+console.assert(canIterate(10)==false, 'integer is not iterable'); 
+console.assert(canIterate("Netology")==true, 'String is iterable'); 
