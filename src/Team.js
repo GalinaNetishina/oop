@@ -1,12 +1,15 @@
-import Er from "./ErrorRepository";
-
 export default class Team {
     constructor() {
-        this.members = new Set();
+        this.members = new Set
+        }
+
+    *[Symbol.iterator]() {
+        yield * this.members;
     }
+
     add(character) {
         if (this.members.has(character)) {
-            throw new Error(Er.translate(18));
+            throw new Error('The character is already in the team');
         }
         this.members.add(character);
     }
@@ -18,4 +21,6 @@ export default class Team {
     toArray() {
         return Array.from(this.members);
     }
+    
 }
+

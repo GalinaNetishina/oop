@@ -1,5 +1,4 @@
-import Er from "./ErrorRepository";export const types =  {
-
+export const types =  {
   Bowman: {attack: 25, defence: 25},
   Swordsman: {attack: 40, defence: 10}, 
   Magician: {attack: 10, defence: 40}, 
@@ -15,10 +14,10 @@ const baseLevel = 1;
 export class Character {
   constructor(name, type){
     if (!(type in types)) {
-      throw new Error(Er.translate(20));
+      throw new Error('Incorrect type for character');
     }
     if (name.length < minNameLength || name.length > maxNameLength) {
-      throw new Error(Er.translate(11));
+      throw new Error('Invalid name for character');
     }
     this.name = name;
     this.type = type;
@@ -30,7 +29,7 @@ export class Character {
 
   levelUp() {
     if (this.health <= 0) {
-      throw new Error(Er.translate(19));
+      throw new Error('The character is dead, levelUp is impossible');
     }
     ++this.level;
     this.attack = Math.round(this.attack * 1.2);
