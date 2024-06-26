@@ -5,12 +5,13 @@ export class Daemon extends Character {
         super(name, "Daemon");
         this.attack = 40;
         this.defence = 10;
+        this.stoned = false;
     }
     set stoned(isStoned) {
-        this.#stoned = isStoned
+        this._stoned = isStoned;
     }
     get stoned(){
-        return this.#stoned
+        return this._stoned;
     }
     getAttack(distance){
         this.attack = Math.round((1 - 0.1*(distance-1)) *this.attack);
@@ -20,4 +21,3 @@ export class Daemon extends Character {
         return Math.round(this.attack);
     }
     }
-}

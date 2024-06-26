@@ -1,17 +1,17 @@
 import {Character} from "./Character.js"
 
 export class Magician extends Character {
-    #stoned  = false
     constructor(name) {
         super(name, "Magician");
         this.defence = 10;
-        this.attack = 40
+        this.attack = 40;
+        this.stoned = false;
     }
     set stoned(isStoned) {
-        this.#stoned = isStoned
+        this._stoned = isStoned
     }
     get stoned(){
-        return this.#stoned
+        return this._stoned
     }
     getAttack(distance){
         this.attack = Math.round((1 - 0.1*(distance-1)) *this.attack);

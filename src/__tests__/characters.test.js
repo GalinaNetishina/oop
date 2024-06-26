@@ -17,14 +17,14 @@ const units = {
 
 describe("basic test", () => {
   it("create object", () => {
-    const testBody = new Daemon("evil");
+    const testBody = new Swordsman("evil");
     expect(testBody).toEqual({
       name: "evil",
-      type: "Daemon",
+      type: "Swordsman",
       level: 1,
       health: 100,
-      attack: 40,
-      defence: 10,
+      attack: 10,
+      defence: 40,
     });
   });
 

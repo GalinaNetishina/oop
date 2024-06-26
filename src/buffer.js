@@ -12,10 +12,10 @@ export function getBuffer() {
 
 class ArrayBufferConverter{
     load(buffer) {
-        this.data = buffer
+        this.data = buffer;
     }
     toString(){
-        return (Buffer.from(this.data)).toString('utf-8')
+        return String.fromCharCode.apply(null, new Uint16Array(this.data));
     }
 }
 
